@@ -45,17 +45,28 @@ class _TabsScreenState extends State<TabsScreen> {
 
     return Scaffold(
       extendBody: true,
-      body: _screen[selectedindex],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        elevation: 10,
-        child: const Icon(
-          CupertinoIcons.compass_fill,
-          color: Colors.white,
-        ),
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          _screen[selectedindex],
+          Positioned(
+              bottom: 35,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ButtonStyle(
+                    fixedSize:
+                        MaterialStateProperty.all<Size>(const Size(55, 55)),
+                    shape: MaterialStateProperty.all<OutlinedBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)))),
+                child: const Icon(
+                  CupertinoIcons.compass_fill,
+                  color: Colors.white,
+                  size: 38,
+                ),
+              ))
+        ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar:
           TabBarMaterial(index: selectedindex, onChangeTab: _selectScreen),
     );
